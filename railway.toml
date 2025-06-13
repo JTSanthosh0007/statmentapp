@@ -1,6 +1,7 @@
 [[environments.default.services]]
 name = "backend"
 root = "backend"
+language = "python"
 buildCommand = "pip install -r requirements.txt"
 startCommand = "python3 -m uvicorn api_server:app --host 0.0.0.0 --port $PORT --workers 4"
 
