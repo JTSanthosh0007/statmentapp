@@ -2,16 +2,6 @@ import streamlit as st
 import hashlib
 import re
 import time
-from supabase_config import (
-    verify_email_exists,
-    send_email,
-    send_password_reset,
-    create_new_user,
-    validate_indian_phone,
-    send_password_reset_email,
-    send_login_code,
-    update_subscription
-)
 from payment import show_subscription_plans
 from utils import hide_streamlit_style
 from statement_parser import StatementParser
@@ -374,121 +364,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Update the background image in the CSS (fix indentation)
-st.markdown("""
-    <style>
-    /* Background image for login page */
-    .stApp {
-        background: linear-gradient(rgba(30, 30, 30, 0.85), rgba(30, 30, 30, 0.85)),
-                    url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-
-    /* Login container with glassmorphism effect */
-    .login-container {
-        background: rgba(37, 37, 37, 0.8) !important;
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
-        padding: 2rem !important;
-        border-radius: 16px !important;
-        max-width: 400px !important;
-        margin: 2rem auto !important;
-    }
-
-    /* Title styling */
-    .login-container h1 {
-        color: #F5F5F5 !important;
-        font-size: 2rem !important;
-        margin-bottom: 2rem !important;
-        text-align: center !important;
-        font-weight: 500 !important;
-    }
-
-    /* Input fields with glassmorphism */
-    .stTextInput input, .stNumberInput input {
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        backdrop-filter: blur(5px) !important;
-        -webkit-backdrop-filter: blur(5px) !important;
-        color: #F5F5F5 !important;
-        padding: 0.75rem 1rem !important;
-        border-radius: 8px !important;
-        transition: all 0.3s ease !important;
-    }
-
-    .stTextInput input:focus, .stNumberInput input:focus {
-        border-color: rgba(74, 144, 226, 0.5) !important;
-        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2) !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    /* Button styling */
-        .stButton button {
-        background: linear-gradient(45deg, #4A90E2, #5C9CE6) !important;
-        border: none !important;
-        padding: 0.75rem 1rem !important;
-        border-radius: 8px !important;
-        color: white !important;
-        font-weight: 500 !important;
-        width: 100% !important;
-        margin: 0.5rem 0 !important;
-            transition: all 0.3s ease !important;
-        }
-        
-        .stButton button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3) !important;
-        background: linear-gradient(45deg, #5C9CE6, #4A90E2) !important;
-    }
-
-    /* Secondary buttons */
-    .stButton [data-baseweb="button"][kind="secondary"] {
-        background: transparent !important;
-        border: 1px solid rgba(74, 144, 226, 0.5) !important;
-        color: #4A90E2 !important;
-    }
-
-    .stButton [data-baseweb="button"][kind="secondary"]:hover {
-        background: rgba(74, 144, 226, 0.1) !important;
-        border-color: #4A90E2 !important;
-    }
-
-    /* Hide fullscreen button and other Streamlit elements */
-    .stApp > header {
-        display: none !important;
-    }
-
-    #MainMenu {
-        display: none !important;
-    }
-
-    footer {
-        display: none !important;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-# Add this new CSS for login header and subheader
-st.markdown("""
-    <style>
-    .login-header {
-        font-size: 28px;
-        font-weight: 600;
-        margin-bottom: 10px;
-    }
-    .login-subheader {
-        font-size: 16px;
-        color: #aaaaaa;
-        margin-bottom: 20px;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 @st.cache_resource
 def get_database_connection():
     """Get database connection with caching"""
@@ -535,8 +410,12 @@ def main():
     # Initialize session state
     initialize_session_state()
 
+    # Initialize a default username if not already set
+    if 'username' not in st.session_state:
+        st.session_state.username = "Guest"
+
     # Show platform selection
-    show_platform_select()
+    show_platform_select(st.session_state.username)
     
     # Show subscription plans
     show_subscription_plans()

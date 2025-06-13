@@ -43,3 +43,4 @@ htmlcov/
 *.log
 *.tmp
 *.temp
+.vercel

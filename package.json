@@ -15,7 +15,6 @@
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.2.0",
     "@react-pdf/renderer": "^4.3.0",
-    "@supabase/supabase-js": "^2.49.8",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/uuid": "^10.0.0",

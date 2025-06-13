@@ -1,6 +1,5 @@
 import streamlit as st
 from platforms.router import route_to_platform
-from supabase_config import get_client
 from datetime import datetime
 
 def display_grid(platforms, all_platforms):
@@ -308,59 +307,6 @@ def show_platform_select(username):
                                     st.rerun()
             else:
                 st.info("No platforms found matching your search. Try a different term.")
-
-    # Comment out the Recent Activity section properly
-    """
-    # Add Recent Activity section
-    st.markdown('<div class="recent-activity">', unsafe_allow_html=True)
-    st.markdown('<h2>Recent Activity</h2>', unsafe_allow_html=True)
-
-    # Get recent activity from Supabase
-    supabase = get_client()
-    try:
-        response = supabase.table('transactions').select('*')\\
-            .eq('username', username)\\
-            .order('created_at', desc=True)\\
-            .limit(5)\\
-            .execute()
-        
-        recent_transactions = response.data
-
-        if recent_transactions:
-            # Display recent transactions
-            for transaction in recent_transactions:
-                st.markdown(
-                    f'''
-                    <div class="activity-item">
-                        <div class="activity-platform">{transaction['platform']}</div>
-                        <div class="activity-amount">₹{transaction['amount']}</div>
-                        <div class="activity-date">{transaction['created_at']}</div>
-                    </div>
-                    ''',
-                    unsafe_allow_html=True
-                )
-        else:
-            st.markdown(
-                '''
-                <div class="activity-alert">
-                    ⚠️ No recent activity to show
-                </div>
-                ''',
-                unsafe_allow_html=True
-            )
-
-    except Exception as e:
-        st.markdown(
-            '''
-            <div class="activity-alert">
-                ⚠️ No recent activity to show
-            </div>
-            ''',
-            unsafe_allow_html=True
-        )
-
-    st.markdown('</div>', unsafe_allow_html=True)
-    """
 
     # Route to platform if selected
     if 'selected_platform' in st.session_state:

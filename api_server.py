@@ -10,7 +10,11 @@ app = FastAPI()
 # Enable CORS with simpler configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=[
+        "https://vercel-frontend-gules-nine.vercel.app",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+    ],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
