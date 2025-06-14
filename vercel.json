@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
   "rootDirectory": "src",
   "env": {
     "NEXT_PUBLIC_API_BASE_URL": "https://statement-parser-backend.onrender.com"
