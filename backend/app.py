@@ -2,7 +2,6 @@ import streamlit as st
 import hashlib
 import re
 import time
-from payment import show_subscription_plans
 from utils import hide_streamlit_style
 from statement_parser import StatementParser
 from platforms.router import route_to_platform
@@ -435,9 +434,6 @@ def main():
 
     # Show platform selection
     show_platform_select(st.session_state.username)
-    
-    # Show subscription plans
-    show_subscription_plans()
 
 if __name__ == "__main__":
     main() 
