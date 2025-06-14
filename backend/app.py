@@ -11,6 +11,11 @@ import random
 import string
 from datetime import datetime
 import sqlite3
+from streamlit_cors import streamlit_cors
+import os
+
+# Enable CORS
+streamlit_cors()
 
 # Must be the first Streamlit command
 st.set_page_config(
@@ -19,6 +24,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Get port from environment variable for Render deployment
+port = int(os.environ.get("PORT", 8501))
 
 # Import other modules after set_page_config
 from utils import hide_streamlit_style
