@@ -18,6 +18,10 @@ import uvicorn
 # Create FastAPI app for CORS
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
