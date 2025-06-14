@@ -3,7 +3,6 @@ from .phonepe import show_phonepe_page
 from .googlepay import show_googlepay_page
 from .paytm import show_paytm_page
 from .supermoney import show_supermoney_page
-from support import show_support_form
 import time
 
 def show_platform_grid():
@@ -128,7 +127,8 @@ def show_platform_grid():
     
     with col1:
         if st.button("📞 Help", key="help_button", use_container_width=True):
-            st.session_state.show_support = True
+            st.info("For support, please contact us at support@statementanalyzer.com")
+            time.sleep(3)
             st.rerun()
             
     with col2:
