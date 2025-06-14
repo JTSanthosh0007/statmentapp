@@ -2,7 +2,7 @@ services:
   - type: web
     name: statement-parser-backend
     env: python
-    buildCommand: chmod +x build.sh && ./build.sh
+    buildCommand: pip install -r requirements.txt
     startCommand: cd backend && streamlit run app.py --server.port=$PORT
     envVars:
       - key: JWT_SECRET

@@ -1,0 +1,1 @@
+web: cd backend && streamlit run app.py --server.port=$PORT 
