@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  srcDir: 'src',
   distDir: '.next',
   experimental: {
     outputFileTracingExcludes: {

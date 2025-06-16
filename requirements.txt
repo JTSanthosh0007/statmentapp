@@ -1,1 +1,22 @@
--r backend/requirements.txt 
+numpy>=1.24.0
+pandas>=2.0.0
+plotly==5.18.0
+pdfplumber==0.10.2
+PyPDF2>=3.0.0
+python-dotenv>=1.0.0
+pillow==10.2.0
+python-dateutil>=2.8.2
+pytz==2024.1
+requests>=2.30.0
+urllib3>=2.0.2
+cryptography==42.0.2
+pymupdf>=1.18.19
+filetype>=1.2.0
+pdfminer.six>=20221105
+tabula-py>=2.7.0
+gunicorn==21.2.0
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+python-multipart==0.0.9
+streamlit==1.32.0
+starlette>=0.27.0 
